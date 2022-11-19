@@ -100,17 +100,62 @@ inquirer
         }
       },
     },
+    {
+      type: "input",
+      name: "Contributions",
+      message: "What are your contributions to the project?",
+      validate: (value) => {
+        if (value) {
+          return true;
+        } else {
+          return "i need a value to continue";
+        }
+      },
+    },
+    {
+      type: "input",
+      name: "Testing",
+      message: "How to test your program?",
+      validate: (value) => {
+        if (value) {
+          return true;
+        } else {
+          return "i need a value to continue";
+        }
+      },
+    },
   ])
   .then(
     // ----Writing the readme file using the prompt-----
 
-    ({ Title, Description, Installation, Usage, License, Github, Email }) => {
+    ({
+      Title,
+      Description,
+      Installation,
+      Usage,
+      License,
+      Github,
+      Email,
+      Contributions,
+      Testing,
+    }) => {
       const template = `# ${Title}
 
   ${Description}
  ## Installation
 
   ${Installation}
+
+ ## Description
+ - [Readme Generator](#readme-generator)
+ - [Installation](#installation)
+ - [Description](#description)
+ - [Table of Contents](#table-of-contents)
+ - [Functionality](#functionality)
+ - [License](#license)
+ - [Testing](#testing)
+ - [Contributions](#contributions)
+ - [Websites](#websites)
 
  ## Functionality
 
@@ -119,6 +164,14 @@ inquirer
  ## License 
 
   ${License}
+
+## Testing
+
+  ${Testing}
+
+## Contributions
+
+ ${Contributions}
      
      
  ## Websites
@@ -134,7 +187,7 @@ inquirer
 //  ----Function that creates the readme file using fs------
 
 function createReadme(data) {
-  fs.writeFile(`README.md`, data, (err) => {
+  fs.writeFile(`README-Example.md`, data, (err) => {
     if (err) {
       console.log(err);
     }
