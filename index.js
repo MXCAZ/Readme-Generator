@@ -139,6 +139,7 @@ inquirer
       Contributions,
       Testing,
     }) => {
+      // ----Adding a template for the readme File----
       const template = `# ${Title}
 
   ${Description}
